@@ -31,7 +31,40 @@ def home():
 
 
 
+# Admin — legg til produkt
+@app.route("/api/admin/add_product", methods=["POST"])
+def admin_add_product():
+    if not is_admin():
+        return jsonify({"ok": False, "error": "Ingen tilgang"})
 
+    data = request.get_json()
+    con = get_db()
+    cur = con.cursor()
+    cur.execute(
+        "INSERT INTO products (name, price, image, stock, description) VALUES (%s, %s, %s, %s, %s)",
+        (data["name"], data["price"], data["image"], data["stock"], data["description"])
+    )
+    con.commit()
+    con.close()
+    return jsonify({"ok": True})
+
+
+
+
+
+# Admin — slett produkt
+@app.route("/api/admin/delete_product", methods=["POST"])
+def admin_delete_product():
+    if not is_admin():
+        return jsonify({"ok": False, "error": "Ingen tilgang"})
+
+    product_id = request.get_json()["product_id"]
+    con = get_db()
+    cur = con.cursor()
+    cur.execute("DELETE FROM products WHERE id = %s", (product_id,))
+    con.commit()
+    con.close()
+    return jsonify({"ok": True})
 
 
 
