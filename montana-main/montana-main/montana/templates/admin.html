@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <title>Montana — Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+  <a href="/">MONTANA</a>
+  <a href="/">Tilbake til butik</a>
+</header>
+
+<div>
+  <h1>Admin-panel</h1>
+
+  <!-- statistikk -->
+  <div>
+    <div>
+      <div>{{ user_count }}</div>
+      <div>Registrerte brukere</div>
+    </div>
+
+    <div>
+      <div>{{ order_count }}</div>
+      <div>Bestillinger</div>
+    </div>
+
+    <div>
+      <div>{{ revenue | int }} kr</div>
+      <div>Total omsetning</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
